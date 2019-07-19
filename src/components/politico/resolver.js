@@ -11,24 +11,24 @@ const resolvers = {
     }
   },
   Mutation: {
-    addPolitico: async (_, args) => {
-      console.log(args.politico)
+    addPolitico: async (_, args, context) => {
+
+      if (context.user === null) {
+        return null
+      }
+
       return await Politico.create(args.politico)
     },
-    // editOrder: (_, args) => {
-    //   const { id } = args
-    //   return fetch(`${HTTP}://${HOST}:${PORT}/api/items/${id}`, {
-    //     method: 'PUT',
-    //     body: JSON.stringify(args.item),
-    //     headers: { 'Content-Type': 'application/json' },
-    //   }).then(res => res.json())
-    // },
-    // deleteOrder: (_, args) => {
-    //   const { id } = args
-    //   return fetch(`${HTTP}://${HOST}:${PORT}/api/items/${id}`, {
-    //     method: 'DELETE'
-    //   }).then(res => res.json())
-    // },
+    editPolitico: async (_, args, context) => {
+      const { id } = args
+
+      if (context.user === null) {
+        return null
+      }
+
+      await Politico.update(args.politico, { where: { id } })
+      return await Politico.findOne({ where: { id } })
+    }
   }
 }
 

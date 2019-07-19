@@ -21,6 +21,6 @@ const Politico = services.db.define('Politico', {
   },
 })
 
-services.db.sync({force: true})
+services.db.sync()
 
 module.exports = Politico
