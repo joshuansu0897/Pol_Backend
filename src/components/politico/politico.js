@@ -1,27 +1,28 @@
 'use strict'
-const services = require('../../services')
-const Sequelize = require('sequelize')
+module.exports = (sequelize, DataTypes) => {
+  const Politico = sequelize.define('Politico', {
+    Id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+    },
+    Nombre: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    Detalles: {
+      type: DataTypes.TEXT,
+      allowNull: false
+    },
+    FechaNacimiento: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+  })
 
-const Politico = services.db.define('Politico', {
-  Id: {
-    type: Sequelize.INTEGER,
-    primaryKey: true,
-    autoIncrement: true
-  },
-  Nombre: {
-    type: Sequelize.STRING,
-    allowNull: false
-  },
-  Detalles: {
-    type: Sequelize.TEXT,
-    allowNull: false
-  },
-  FechaNacimiento: {
-    type: Sequelize.STRING,
-    allowNull: false
-  },
-})
+  Politico.associate = (models) => {
+    // Politico.hasMany(models.User, { as: 'employes' })
+  }
 
-services.db.sync()
-
-module.exports = Politico
+  return Politico
+}

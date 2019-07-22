@@ -1,5 +1,6 @@
 'use strict'
-const Politico = require('./politico')
+const db = require('../../services').db
+const Politico = db.Politico
 
 const resolvers = {
   Query: {

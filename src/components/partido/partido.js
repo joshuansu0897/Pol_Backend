@@ -1,31 +1,32 @@
 'use strict'
-const services = require('../../services')
-const Sequelize = require('sequelize')
+module.exports = (sequelize, DataTypes) => {
+  const Partido = sequelize.define('Partido', {
+    Id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+    },
+    Nombre: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    Alias: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    Detalles: {
+      type: DataTypes.TEXT,
+      allowNull: false
+    },
+    FechaFundacion: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+  })
 
-const Partido = services.db.define('Partido', {
-  Id: {
-    type: Sequelize.INTEGER,
-    primaryKey: true,
-    autoIncrement: true
-  },
-  Nombre: {
-    type: Sequelize.STRING,
-    allowNull: false
-  },
-  Alias: {
-    type: Sequelize.STRING,
-    allowNull: false
-  },
-  Detalles: {
-    type: Sequelize.TEXT,
-    allowNull: false
-  },
-  FechaFundacion: {
-    type: Sequelize.STRING,
-    allowNull: false
-  },
-})
+  Partido.associate = (models) => {
+    // Partido.hasMany(models.User, { as: 'employes' })
+  }
 
-services.db.sync()
-
-module.exports = Partido
+  return Partido
+}

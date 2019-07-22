@@ -1,5 +1,6 @@
 'use strict'
-const Cargo = require('./cargo')
+const db = require('../../services').db
+const Cargo = db.Cargo
 
 const resolvers = {
   Query: {

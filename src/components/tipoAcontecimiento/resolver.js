@@ -1,5 +1,6 @@
 'use strict'
-const TipoAcontecimiento = require('./tipoAcontecimiento')
+const db = require('../../services').db
+const TipoAcontecimiento = db.TipoAcontecimiento
 
 const resolvers = {
   Query: {

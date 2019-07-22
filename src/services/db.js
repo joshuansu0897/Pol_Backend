@@ -1,5 +1,6 @@
 'use strict'
 const Sequelize = require('sequelize')
+const util = require('../utils/errorhandler')
 
 const name = process.env.NAME_DB || 'ExampleDB'
 const user = process.env.USER_DB || 'root'
@@ -24,7 +25,14 @@ const sequelize = new Sequelize(name, user, pass, {
 sequelize.authenticate().then(() => {
   console.log('Connection has been established successfully.')
 }).catch(err => {
-  console.error('Unable to connect to the database:', err)
+  util.fatalErrorHandler(err)
 })
 
-module.exports = sequelize
+const db = {
+  Politico: require('../components/politico/politico')(sequelize, Sequelize),
+  Partido: require('../components/partido/partido')(sequelize, Sequelize),
+  Cargo: require('../components/cargo/cargo')(sequelize, Sequelize),
+  TipoAcontecimiento: require('../components/tipoAcontecimiento/tipoAcontecimiento')(sequelize, Sequelize)
+}
+
+module.exports = db

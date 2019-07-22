@@ -1,5 +1,6 @@
 'use strict'
-const Partido = require('./partido')
+const db = require('../../services').db
+const Partido = db.Partido
 
 const resolvers = {
   Query: {
