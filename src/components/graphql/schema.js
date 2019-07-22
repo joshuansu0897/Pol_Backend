@@ -3,6 +3,7 @@ const { makeExecutableSchema } = require("graphql-tools")
 
 const politico = require('../politico')
 const partido = require('../partido')
+const cargo = require('../cargo')
 
 // root query and mutation
 const rootQuery = `
@@ -18,18 +19,21 @@ const rootQuery = `
 const typeDefs = [
   rootQuery,
   politico.schema,
-  partido.schema
+  partido.schema,
+  cargo.schema
 ]
 
 // merge resolvers
 const resolvers = {
   Query: {
     ...politico.resolver.Query,
-    ...partido.resolver.Query
+    ...partido.resolver.Query,
+    ...cargo.resolver.Query,
   },
   Mutation: {
     ...politico.resolver.Mutation,
-    ...partido.resolver.Mutation
+    ...partido.resolver.Mutation,
+    ...cargo.resolver.Mutation,
   }
 }
 
