@@ -1,3 +1,4 @@
+'use static'
 const { makeExecutableSchema } = require("graphql-tools")
 
 const politico = require('../politico')
@@ -23,7 +24,7 @@ const resolvers = Object.assign(
   politico.resolver
 )
 
-// connect schemas and resolvers and make executable schema
+// connect schemas with resolvers and make executable schema
 const schema = makeExecutableSchema({ typeDefs, resolvers })
 
 module.exports = schema

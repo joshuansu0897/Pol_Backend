@@ -1,3 +1,4 @@
+'use strict'
 const app = require('express')()
 const graphqlHTTP = require('express-graphql')
 const bodyParser = require('body-parser')

@@ -1,3 +1,4 @@
+'use strict'
 const Politico = require('./politico')
 
 const resolvers = {

@@ -1,3 +1,4 @@
+'use strict'
 const services = require('../../services')
 const Sequelize = require('sequelize')
 

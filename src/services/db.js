@@ -1,3 +1,4 @@
+'use strict'
 const Sequelize = require('sequelize')
 
 const name = process.env.NAME_DB || 'ExampleDB'

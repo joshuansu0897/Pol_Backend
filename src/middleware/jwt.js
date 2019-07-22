@@ -1,3 +1,4 @@
+'use strict'
 const lib = require('../utils/lib')
 const jwt = require('jsonwebtoken')
 
