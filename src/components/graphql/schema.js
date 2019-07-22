@@ -2,6 +2,7 @@
 const { makeExecutableSchema } = require("graphql-tools")
 
 const politico = require('../politico')
+const partido = require('../partido')
 
 // root query and mutation
 const rootQuery = `
@@ -16,13 +17,21 @@ const rootQuery = `
 // merge schemas
 const typeDefs = [
   rootQuery,
-  politico.schema
+  politico.schema,
+  partido.schema
 ]
 
 // merge resolvers
-const resolvers = Object.assign(
-  politico.resolver
-)
+const resolvers = {
+  Query: {
+    ...politico.resolver.Query,
+    ...partido.resolver.Query
+  },
+  Mutation: {
+    ...politico.resolver.Mutation,
+    ...partido.resolver.Mutation
+  }
+}
 
 // connect schemas with resolvers and make executable schema
 const schema = makeExecutableSchema({ typeDefs, resolvers })
